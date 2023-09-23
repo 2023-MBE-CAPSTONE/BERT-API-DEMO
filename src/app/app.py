@@ -1,4 +1,6 @@
 import os,sys
+
+from mangum import Mangum
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from fastapi import FastAPI
@@ -21,3 +23,5 @@ async def predict_bert(input_message: str = Body(..., embed=True)):
     hf = huggingFace(BERT_API_URL,BERT_API_TOKEN)
     output_text = hf.query(input_message)
     return output_text
+
+handler = Mangum(app)

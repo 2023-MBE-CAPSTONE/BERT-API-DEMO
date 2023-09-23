@@ -1,9 +1,8 @@
-FROM python:3.11.5-slim
-WORKDIR /bert-api-demo
+FROM amazon/aws-lambda-python:3.8
 RUN pip install pipenv
 COPY ./Pipfile ./Pipfile
 COPY ./Pipfile.lock ./Pipfile.lock
-RUN pipenv install 
+RUN pipenv install --dev --system --deploy
 COPY ./src ./src/
 COPY .env .env
-CMD ["pipenv", "run", "python", "./src/main.py"]
+CMD ["src.app.app.handler"]

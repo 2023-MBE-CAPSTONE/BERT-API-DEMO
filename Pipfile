@@ -9,6 +9,9 @@ uvicorn = "*"
 python-dotenv = "*"
 requests = "*"
 httpx = "*"
+awscli = "*"
+mangum = "*"
+zappa = "*"
 
 [dev-packages]
 

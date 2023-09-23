@@ -2,6 +2,7 @@ import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from fastapi import FastAPI
+from fastapi import Body
 from dotenv import load_dotenv
 
 from src.models.hugging_face import huggingFace
@@ -14,7 +15,7 @@ async def root():
     return {"msg": "This is demo server for BERT !!!!"}
 
 @app.post("/predict/bert/")
-async def predict_bert(input_message: str):
+async def predict_bert(input_message: str = Body(..., embed=True)):
     BERT_API_URL = os.getenv('HUGGING_FACE_API_URL')
     BERT_API_TOKEN = os.getenv('HUGGING_FACE_API_TOKEN')
     hf = huggingFace(BERT_API_URL,BERT_API_TOKEN)

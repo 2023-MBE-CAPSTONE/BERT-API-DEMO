@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.11.5-slim
 WORKDIR /bert-api-demo
 RUN pip install pipenv
 COPY ./Pipfile ./Pipfile
